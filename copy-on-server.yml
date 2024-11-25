@@ -1,0 +1,14 @@
+---
+- name: Copy Files to Server
+  hosts: localhost
+  vars:
+    source: "{{ source }}"
+    target: "{{ target }}"
+    site: "{{ site }}"
+
+  tasks:
+    - name: Copy .tar file to remote server
+      copy:
+        src: "{{ source }}"
+        dest: "{{ target }}"
+      delegate_to: "{{ site }}"

@@ -1,0 +1,48 @@
+---
+- name: Deploy Application and Trigger Service Update
+  hosts: localhost
+  vars:
+    service: "{{ service }}"
+    site: "{{ site }}"
+    namespace: "{{ namespace }}"
+    deployments_dir: "deployments"
+
+  tasks:
+    - name: Check if YAML file exists for the service
+      stat:
+        path: "{{ deployments_dir }}/{{ service }}.yaml"
+      register: yaml_file_stat
+
+    - name: Fail if YAML file does not exist
+      fail:
+        msg: "No YAML file found for service {{ service }}."
+      when: not yaml_file_stat.stat.exists
+
+    - name: Update context-path in the YAML file with the namespace
+      lineinfile:
+        path: "{{ deployments_dir }}/{{ service }}.yaml"
+        regexp: '\{NAMESPACE\}'
+        line: "{{ namespace }}"
+      when: yaml_file_stat.stat.exists
+
+    - name: Copy YAML file to remote server
+      copy:
+        src: "{{ deployments_dir }}/{{ service }}.yaml"
+        dest: "/tmp/{{ service }}.yaml"
+      delegate_to: "{{ site }}"
+
+    - name: Apply YAML file to Kubernetes
+      command: "kubectl apply -f /tmp/{{ service }}.yaml -n {{ namespace }}"
+      delegate_to: "{{ site }}"
+
+    - name: Clean up YAML file from remote server
+      command: "rm -f /tmp/{{ service }}.yaml"
+      delegate_to: "{{ site }}"
+
+    - name: Trigger update-service playbook
+      include_tasks: update-service.yml
+      vars:
+        service: "{{ service }}"
+        version: "{{ version }}"
+        namespace: "{{ namespace }}"
+        site: "{{ site }}"

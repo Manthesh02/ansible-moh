@@ -1,0 +1,39 @@
+---
+- name: Update Service and Trigger Further Tasks
+  hosts: localhost
+  vars:
+    service: "{{ service }}"
+    version: "{{ version }}"
+    namespace: "{{ namespace }}"
+    site: "{{ site }}"
+
+  tasks:
+    - name: Pull the image using Podman and save as tar
+      shell: |
+        podman pull docker.io/oasissys/{{ service }}:{{ version }} &&
+        podman save -o /tmp/{{ service }}.tar docker.io/oasissys/{{ service }}:{{ version }}
+      delegate_to: "{{ site }}"
+
+    - name: Check if image is available locally
+      shell: "podman images -q oasissys/{{ service }}:{{ version }}"
+      register: podman_image_check
+      delegate_to: "{{ site }}"
+
+    - name: Fail if the image is not found
+      fail:
+        msg: "Image oasissys/{{ service }}:{{ version }} not found"
+      when: podman_image_check.stdout == ""
+
+    - name: Trigger copy-on-server playbook to copy the image to the server
+      include_tasks: copy-on-server.yml
+      vars:
+        source: "/tmp/{{ service }}.tar"
+        target: "/tmp/{{ service }}.tar"
+        site: "{{ site }}"
+
+    - name: Trigger run-on-server playbook to import the image and update Kubernetes
+      include_tasks: run-on-server.yml
+      vars:
+        site: "{{ site }}"
+        command: |
+          ctr -n k8s.io -a /run/k3s/containerd/containerd.sock images import /tmp/{{ service }}.tar

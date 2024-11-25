@@ -1,0 +1,11 @@
+---
+- name: Run Commands on Remote Server
+  hosts: localhost
+  vars:
+    command: "{{ command }}"
+    site: "{{ site }}"
+
+  tasks:
+    - name: Execute command on remote server
+      command: "{{ command }}"
+      delegate_to: "{{ site }}"
