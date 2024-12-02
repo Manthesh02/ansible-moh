@@ -1,0 +1,104 @@
+all:
+  hosts:
+    mhhtprod:
+      namespace: "mhhtprod"
+      ip_address: "10.5.43.89"
+    lghjprod:
+      namespace: "lghjprod"
+      ip_address: "10.5.43.93"
+    rghjprod:
+      namespace: "rghjprod"
+      ip_address: "10.5.43.94"
+    athjprod:
+      namespace: "athjprod"
+      ip_address: "10.5.43.95"
+    kaahjprod:
+      namespace: "kaahjprod"
+      ip_address: "10.5.43.74"
+    mhhbprod:
+      namespace: "mhhbprod"
+      ip_address: "10.5.43.75"
+    azmhpprod:
+      namespace: "azmhpprod"
+      ip_address: "10.5.43.79"
+    jehpprod:
+      namespace: "jehpprod"
+      ip_address: "10.5.43.92"
+    panahprod:
+      namespace: "panahprod"
+      ip_address: "10.5.43.92"
+    chtpprod:
+      namespace: "chtpprod"
+      ip_address: "10.5.43.92"
+    kabhpprod:
+      namespace: "kabhpprod"
+      ip_address: "10.5.43.89"
+    mchnprod:
+      namespace: "mchnprod"
+      ip_address: "10.5.43.88"
+    ayrhprod:
+      namespace: "ayrhprod"
+      ip_address: "10.5.43.87"
+    saratprod:
+      namespace: "saratprod"
+      ip_address: "10.5.43.87"
+    mahaniprod:
+      namespace: "mahaniprod"
+      ip_address: "10.5.43.83"
+    jipcpprod:
+      namespace: "jipcpprod"
+      ip_address: "10.5.43.81"
+    sbshpprod:
+      namespace: "sbshpprod"
+      ip_address: "10.5.43.86"
+    qbmhpprod:
+      namespace: "qbmhpprod"
+      ip_address: "10.5.43.86"
+    khpprod:
+      namespace: "khpprod"
+      ip_address: "10.5.43.86"
+    mshpprod:
+      namespace: "mshpprod"
+      ip_address: "10.5.43.86"
+    thpprod:
+      namespace: "thpprod"
+      ip_address: "10.5.43.86"
+    muwhpprod:
+      namespace: "muwhpprod"
+      ip_address: "10.5.43.86"
+    qhpprod:
+      namespace: "qhpprod"
+      ip_address: "10.5.43.86"
+    rhpprod:
+      namespace: "rhpprod"
+      ip_address: "10.5.43.86"
+    jpshpprod:
+      namespace: "jpshpprod"
+      ip_address: "10.5.43.78"
+    kahtprod:
+      namespace: "kahtprod"
+      ip_address: "10.5.43.90"
+    mchkpprod:
+      namespace: "mchkpprod"
+      ip_address: "10.5.43.85"
+    aghpprod:
+      namespace: "aghpprod"
+      ip_address: "10.5.43.84"
+    mghpprod:
+      namespace: "mghpprod"
+      ip_address: "10.5.43.84"
+    hhpprod:
+      namespace: "hhpprod"
+      ip_address: "10.5.43.84"
+    mhpprod:
+      namespace: "mhpprod"
+      ip_address: "10.5.43.84"
+    pahprod:
+      namespace: "pahprod"
+      ip_address: "10.5.43.84"
+    prpbprod:
+      namespace: "prpbprod"
+      ip_address: "10.5.43.84"
+    ghpprod:
+      namespace: "ghpprod"
+      ip_address: "10.5.43.84"
